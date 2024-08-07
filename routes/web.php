@@ -12,4 +12,7 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function 
     Route::prefix('main')->namespace('Main')->group(function () {
         Route::get('/', 'IndexController');
     });
+    Route::prefix('category')->namespace('Category')->group(function () {
+        Route::get('/', 'IndexController')->name('admin.category.index');
+    });
 });
