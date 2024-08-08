@@ -29,9 +29,12 @@
                             @csrf
                             <div class="card-body pl-0">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Название категории</label>
+                                    <label>Название категории</label>
                                     <input type="text" class="form-control" name="title"
                                            placeholder="Название категории">
+                                    @error('title')
+                                    <div class="text-danger">Это поле необходимо заполнить</div>
+                                    @enderror
                                 </div>
                             </div>
                             <input type="submit" class="btn btn-primary" value="Добавить">
