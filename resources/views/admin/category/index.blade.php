@@ -50,7 +50,7 @@
                                             <td>{{ $category->id }}</td>
                                             <td>{{ $category->title }}</td>
                                             <td><a href="{{ route('admin.category.show', $category->id) }}"><i class="far fa-eye"></i></a></td>
-                                            <td>Обновление</td>
+                                            <td><a href="{{ route('admin.category.edit', $category->id) }}" class="text-success"><i class="fas fa-edit"></i></a></td>
                                             <td>Удаление</td>
                                         </tr>
                                     @endforeach
