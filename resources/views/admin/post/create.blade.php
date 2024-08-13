@@ -80,6 +80,19 @@
                                     <div class="text-danger">Это поле необходимо заполнить</div>
                                     @enderror
                                 </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                        <label>Выберите теги</label>
+                                        <div class="select2-purple">
+                                            <select class="select2" multiple="multiple" data-dropdown-css-class="select2-purple" style="width: 100%;" name="tag_ids[]">
+                                                @foreach( $tags as $tag)
+                                                <option {{ is_array( old('tag_ids')) && in_array($tag->id, old('tag_ids')) ? ' selected' : '' }} value="{{ $tag->id }}">{{ $tag->title }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- /.form-group -->
+                                </div>
                             </div>
                             <input type="submit" class="btn btn-primary" value="Добавить">
                         </form>
