@@ -8,22 +8,13 @@ use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Support\Facades\Storage;
 
-class UpdateController extends Controller
+class UpdateController extends BaseController
 {
     public function __invoke(UpdateRequest $request, Post $post)
     {
-        try {
-            $data = $request->validated();
-            $tagIds = $data['tag_ids'];
-            unset($data['tag_ids']);
-            $data['preview_image'] = Storage::put('/images', $data['preview_image']);
-            $data['main_image'] = Storage::put('/images', $data['main_image']);
+        $data = $request->validated();
+        $post = $this->service->update($data, $post);
 
-            $post->update($data);
-            $post->tags()->sync($tagIds);
-        } catch (\Exception $exception) {
-            abort(404);
-        }
-        return redirect()->route('admin.post.index');
+        return redirect()->route('admin.post.show', compact('post'));
     }
 }
