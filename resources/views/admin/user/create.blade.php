@@ -57,6 +57,18 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="card-body pl-0">
+                                <div class="form-group">
+                                    <label>Введите роль пользователя:</label>
+                                    <select name="role" class="form-control">
+                                        <option value="administrator">Администратор</option>
+                                        <option value="reader">Читатель</option>
+                                    </select>
+                                    @error('role')
+                                    <div class="text-danger">Это поле необходимо заполнить</div>
+                                    @enderror
+                                </div>
+                            </div>
                             <input type="submit" class="btn btn-primary" value="Добавить">
                         </form>
                     </div>

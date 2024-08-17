@@ -48,6 +48,18 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="card-body pl-0">
+                                <div class="form-group">
+                                    <label>Введите роль пользователя:</label>
+                                    <select name="role" class="form-control">
+                                        <option value="administrator" {{ $user->isAdministrator() ? 'selected' : '' }}>Администратор</option>
+                                        <option value="reader" {{ $user->isReader() ? 'selected' : '' }}>Читатель</option>
+                                    </select>
+                                    @error('role')
+                                    <div class="text-danger">Это поле необходимо заполнить</div>
+                                    @enderror
+                                </div>
+                            </div>
                             <div class="form-group w-50">
                                 <input type="hidden" name="user_id" value="{{ $user->id }}">
                             </div>
