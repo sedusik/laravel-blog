@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\User\StoreRequest;
 use App\Mail\User\Passwordmail;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -18,8 +19,9 @@ class StoreController extends Controller
         $password = Str::random(10);
         $data['password'] = Hash::make($password);
 
-        User::firstOrCreate(['email' => $data['email']], $data);
+        $user = User::firstOrCreate(['email' => $data['email']], $data);
         Mail::to($data['email'])->send(new Passwordmail($password));
+        event(new Registered($user));
 
         return redirect()->route('admin.user.index');
     }
