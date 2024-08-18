@@ -8,7 +8,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function () {
+Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->middleware(['auth', 'admin'])->group(function () {
     Route::prefix('main')->namespace('Main')->group(function () {
         Route::get('/', 'IndexController');
     });
@@ -38,5 +38,14 @@ Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->group(function 
         Route::get('/{post}/edit', 'EditController')->name('admin.post.edit');
         Route::patch('/{post}', 'UpdateController')->name('admin.post.update');
         Route::delete('/{post}', 'DeleteController')->name('admin.post.delete');
+    });
+    Route::prefix('user')->namespace('User')->group(function () {
+        Route::get('/', 'IndexController')->name('admin.user.index');
+        Route::get('/create', 'CreateController')->name('admin.user.create');
+        Route::post('/', 'StoreController')->name('admin.user.store');
+        Route::get('/{user}', 'ShowController')->name('admin.user.show');
+        Route::get('/{user}/edit', 'EditController')->name('admin.user.edit');
+        Route::patch('/{user}', 'UpdateController')->name('admin.user.update');
+        Route::delete('/{user}', 'DeleteController')->name('admin.user.delete');
     });
 });
