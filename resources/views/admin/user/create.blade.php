@@ -49,16 +49,6 @@
                             </div>
                             <div class="card-body pl-0">
                                 <div class="form-group">
-                                    <label>Введите пароль пользователя:</label>
-                                    <input type="text" class="form-control" name="password"
-                                           placeholder="Пароль">
-                                    @error('password')
-                                    <div class="text-danger">Это поле необходимо заполнить</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="card-body pl-0">
-                                <div class="form-group">
                                     <label>Введите роль пользователя:</label>
                                     <select name="role" class="form-control">
                                         <option value="administrator">Администратор</option>
