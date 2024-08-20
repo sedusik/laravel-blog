@@ -9,6 +9,22 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::prefix('personal')->namespace('App\Http\Controllers\Personal')->middleware(['auth', 'verified'])->group(function () {
+    Route::prefix('main')->namespace('Main')->group(function () {
+        Route::get('/', 'IndexController')->name('personal.main.index');
+    });
+    Route::prefix('liked')->namespace('Liked')->group(function () {
+        Route::get('/', 'IndexController')->name('personal.liked.index');
+        Route::delete('/{post}', 'DeleteController')->name('personal.liked.delete');
+    });
+    Route::prefix('comment')->namespace('Comment')->group(function () {
+        Route::get('/', 'IndexController')->name('personal.comment.index');
+        Route::delete('/{comment}', 'DeleteController')->name('personal.comment.delete');
+        Route::patch('/{comment}', 'UpdateController')->name('personal.comment.update');
+        Route::get('/{comment}', 'EditController')->name('personal.comment.edit');
+    });
+});
+
 Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->middleware(['auth', 'admin', 'verified'])->group(function () {
     Route::prefix('main')->namespace('Main')->group(function () {
         Route::get('/', 'IndexController')->name('admin.main.index');
