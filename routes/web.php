@@ -7,7 +7,13 @@ Route::get('/', App\Http\Controllers\Main\IndexController::class);
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::prefix('main')->namespace('App\Http\Controllers\Main')->group(function () {
+    Route::get('/', 'IndexController')->name('main.index');
+});
+
+Route::prefix('post')->namespace('App\Http\Controllers\Post')->group(function () {
+    Route::get('/', 'IndexController')->name('post.index');
+});
 
 Route::prefix('personal')->namespace('App\Http\Controllers\Personal')->middleware(['auth', 'verified'])->group(function () {
     Route::prefix('main')->namespace('Main')->group(function () {
