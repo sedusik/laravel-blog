@@ -13,6 +13,7 @@ Route::prefix('main')->namespace('App\Http\Controllers\Main')->group(function ()
 
 Route::prefix('post')->namespace('App\Http\Controllers\Post')->group(function () {
     Route::get('/', 'IndexController')->name('post.index');
+    Route::get('/{post}', 'ShowController')->name('post.show');
 });
 
 Route::prefix('personal')->namespace('App\Http\Controllers\Personal')->middleware(['auth', 'verified'])->group(function () {
