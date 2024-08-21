@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">{{ $post->title }}</h1>
+                        <h1 class="m-0">Мне нравится</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -24,27 +24,31 @@
                             <!-- /.card-header -->
                             <div class="card-body table-responsive p-0">
                                 <table class="table table-hover text-nowrap">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Название поста</th>
+                                        <th>Просмотр поста</th>
+                                        <th>Удалить</th>
+                                    </tr>
+                                    </thead>
                                     <tbody>
+                                    @foreach($posts as $post)
                                         <tr>
-                                            <td>ID</td>
                                             <td>{{ $post->id }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Название</td>
                                             <td>{{ $post->title }}</td>
+                                            <td><a href="#"><i class="far fa-eye"></i></a></td>
+                                            <td>
+                                                <form action="{{ route('personal.liked.delete', $post->id) }}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" class="border-0 bg-transparent">
+                                                        <i class="far fa-trash-alt text-danger"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
                                         </tr>
-                                        <tr>
-                                            <td>Категория</td>
-                                            <td>{{ $post->category->title }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Дата создания</td>
-                                            <td>{{ $post->created_at }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Дата обновления</td>
-                                            <td>{{ $post->updated_at }}</td>
-                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

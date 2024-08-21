@@ -1,16 +1,33 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', App\Http\Controllers\Main\IndexController::class);
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->middleware(['auth', 'admin'])->group(function () {
+Route::prefix('personal')->namespace('App\Http\Controllers\Personal')->middleware(['auth', 'verified'])->group(function () {
     Route::prefix('main')->namespace('Main')->group(function () {
-        Route::get('/', 'IndexController');
+        Route::get('/', 'IndexController')->name('personal.main.index');
+    });
+    Route::prefix('liked')->namespace('Liked')->group(function () {
+        Route::get('/', 'IndexController')->name('personal.liked.index');
+        Route::delete('/{post}', 'DeleteController')->name('personal.liked.delete');
+    });
+    Route::prefix('comment')->namespace('Comment')->group(function () {
+        Route::get('/', 'IndexController')->name('personal.comment.index');
+        Route::delete('/{comment}', 'DeleteController')->name('personal.comment.delete');
+        Route::patch('/{comment}', 'UpdateController')->name('personal.comment.update');
+        Route::get('/{comment}', 'EditController')->name('personal.comment.edit');
+    });
+});
+
+Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->middleware(['auth', 'admin', 'verified'])->group(function () {
+    Route::prefix('main')->namespace('Main')->group(function () {
+        Route::get('/', 'IndexController')->name('admin.main.index');
     });
     Route::prefix('category')->namespace('Category')->group(function () {
         Route::get('/', 'IndexController')->name('admin.category.index');

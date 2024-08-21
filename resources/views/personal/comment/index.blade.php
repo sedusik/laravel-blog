@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Категории</h1>
+                        <h1 class="m-0">Комментарии</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -17,11 +17,6 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-1 mb-3">
-                        <a href="{{ route('admin.category.create') }}" class="btn btn-primary">Добавить</a>
-                    </div>
-                </div>
                 <!-- /.row -->
                 <div class="row">
                     <div class="col-6">
@@ -32,21 +27,21 @@
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Название</th>
-                                        <th>Просмотр</th>
-                                        <th>Обновление</th>
-                                        <th>Удаление</th>
+                                        <th>Комментарий</th>
+                                        <th>Название поста</th>
+                                        <th>Редактировать</th>
+                                        <th>Удалить</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($categories as $category)
+                                    @foreach($comments as $comment)
                                         <tr>
-                                            <td>{{ $category->id }}</td>
-                                            <td>{{ $category->title }}</td>
-                                            <td><a href="{{ route('admin.category.show', $category->id) }}"><i class="far fa-eye"></i></a></td>
-                                            <td><a href="{{ route('admin.category.edit', $category->id) }}" class="text-success"><i class="fas fa-edit"></i></a></td>
+                                            <td>{{ $comment->id }}</td>
+                                            <td>{{ $comment->message }}</td>
+                                            <td>{{ $comment->post->title }}</td>
+                                            <td><a href="{{ route('personal.comment.edit', $comment->id) }}" class="text-success"><i class="fas fa-edit"></i></a></td>
                                             <td>
-                                                <form action="{{ route('admin.category.delete', $category->id)}}"
+                                                <form action="{{ route('personal.comment.delete', $comment->id)}}"
                                                       method="post">
                                                     @csrf
                                                     @method('delete')
