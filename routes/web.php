@@ -14,6 +14,12 @@ Route::prefix('main')->namespace('App\Http\Controllers\Main')->group(function ()
 Route::prefix('post')->namespace('App\Http\Controllers\Post')->group(function () {
     Route::get('/', 'IndexController')->name('post.index');
     Route::get('/{post}', 'ShowController')->name('post.show');
+    Route::prefix('{post}/comments')->namespace('Comment')->group(function () {
+        Route::post('/', 'StoreController')->name('post.comments.store');
+    });
+    Route::prefix('{post}/likes')->namespace('Like')->group(function () {
+        Route::post('/', 'StoreController')->name('post.likes.store');
+    });
 });
 
 Route::prefix('personal')->namespace('App\Http\Controllers\Personal')->middleware(['auth', 'verified'])->group(function () {
