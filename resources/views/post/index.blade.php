@@ -70,7 +70,7 @@
                     <h5 class="widget-title">Популярные посты</h5>
                     <ul class="post-list">
                         @foreach($likedPosts as $likedPost)
-                            <li class="post">
+                            <li class="post h-25">
                                 <a href="{{ route('post.show', $likedPost->id) }}" class="post-permalink media">
                                     <img src="{{ 'storage/' . $likedPost->preview_image }}" alt="blog post">
                                     <div class="media-body">
@@ -83,7 +83,9 @@
                 </div>
                 <div class="widget">
                     <h5 class="widget-title">Категории</h5>
-                    <img src="{{ asset('assets/images/blog_widget_categories.jpg') }}" alt="categories" class="w-100">
+                    <a href="{{ route('category.index') }}">
+                    <img src="{{ asset('assets/images/category.jpg') }}" alt="categories" class="w-100">
+                    </a>
                 </div>
             </div>
         </div>
