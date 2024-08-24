@@ -11,6 +11,14 @@ Route::prefix('main')->namespace('App\Http\Controllers\Main')->group(function ()
     Route::get('/', 'IndexController')->name('main.index');
 });
 
+Route::prefix('contacts')->namespace('App\Http\Controllers')->group(function () {
+    Route::get('/', 'ContactsController')->name('contact.index');
+});
+
+    Route::prefix('about')->namespace('App\Http\Controllers')->group(function () {
+    Route::get('/', 'AboutController')->name('about.index');
+});
+
 Route::prefix('category')->namespace('App\Http\Controllers\Category')->group(function () {
     Route::get('/', 'IndexController')->name('category.index');
     Route::prefix('{category}/posts')->namespace('Post')->group(function () {
@@ -20,7 +28,8 @@ Route::prefix('category')->namespace('App\Http\Controllers\Category')->group(fun
 
 Route::prefix('post')->namespace('App\Http\Controllers\Post')->group(function () {
     Route::get('/', 'IndexController')->name('post.index');
-    Route::get('/{post}', 'IndexController')->name('post.show');
+    Route::get('/{post}', 'ShowController')->name('post.show');
+
     Route::prefix('{post}/comments')->namespace('Comment')->group(function () {
         Route::post('/', 'StoreController')->name('post.comments.store');
     });
