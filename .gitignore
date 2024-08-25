@@ -6,6 +6,7 @@
 /public/assets
 /public/dist
 /public/plugins
+/public/vendor
 /storage/*.key
 /vendor
 .env

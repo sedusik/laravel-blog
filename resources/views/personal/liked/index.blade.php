@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('personal.layouts.main')
 
 @section('content')
     <div class="content-wrapper">
@@ -37,7 +37,7 @@
                                         <tr>
                                             <td>{{ $post->id }}</td>
                                             <td>{{ $post->title }}</td>
-                                            <td><a href="#"><i class="far fa-eye"></i></a></td>
+                                            <td><a href="{{ route('post.show', $post->id) }}"><i class="far fa-eye"></i></a></td>
                                             <td>
                                                 <form action="{{ route('personal.liked.delete', $post->id) }}" method="post">
                                                     @csrf

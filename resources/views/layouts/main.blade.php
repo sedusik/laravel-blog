@@ -17,42 +17,30 @@
 <header class="edica-header">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
-            <a class="navbar-brand" href="index.html"><img src="{{ asset('assets/images/logo.svg') }}" alt="Edica"></a>
+            <a class="navbar-brand" href="{{ route('post.index') }}"><img src="{{ asset('assets/images/logo_world.png') }}" alt="logo"></a>
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#edicaMainNav" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="edicaMainNav">
                 <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ route('post.index') }}"><h5>Блог</h5></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="blogDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog</a>
-                        <div class="dropdown-menu" aria-labelledby="blogDropdown">
-                            <a class="dropdown-item" href="blog.html">Blog Archive</a>
-                            <a class="dropdown-item" href="blog-single.html">Blog Post</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-                        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                            <a class="dropdown-item" href="404.html">404</a>
-                            <a class="dropdown-item" href="coming-soon.html">Coming Soon</a>
-                        </div>
+                        <a class="nav-link" href="{{ route('about.index') }}"><h5>Об авторе</h5></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
+                        <a class="nav-link" href="{{ route('contact.index') }}"><h5>Контакты</h5></a>
                     </li>
                 </ul>
                 <ul class="navbar-nav mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><span class="flag-icon flag-icon-squared rounded-circle flag-icon-gb"></span> Eng</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Download</a>
+                        @auth()
+                            <a class="nav-link" href="{{ route('personal.main.index') }}"><h5>Личный кабинет</h5></a>
+                        @endauth
+                        @guest()
+                            <a class="nav-link" href="{{ route('personal.main.index') }}">Войти<h5></h5></a>
+                        @endguest
                     </li>
                 </ul>
             </div>
@@ -62,77 +50,33 @@
 
 @yield('content')
 
-<section class="edica-footer-banner-section">
+<footer class="edica-footer py-3 mt-1" data-aos="fade-up">
     <div class="container">
-        <div class="footer-banner" data-aos="fade-up">
-            <h1 class="banner-title">Download it now.</h1>
-            <div class="banner-btns-wrapper">
-                <button class="btn btn-success"> <img src="{{ asset('assets/images/apple@1x.svg') }}" alt="ios" class="mr-2"> App Store</button>
-                <button class="btn btn-success"> <img src="{{ asset('assets/images/android@1x.svg') }}" alt="android" class="mr-2"> Google Play</button>
-            </div>
-            <p class="banner-text">Add some helper text here to explain the finer details of your <br> product or service.</p>
-        </div>
-    </div>
-</section>
-<footer class="edica-footer" data-aos="fade-up">
-    <div class="container">
-        <div class="row footer-widget-area">
+        <div class="row footer-widget-area py-2">
             <div class="col-md-3">
-                <a href="index.html" class="footer-brand-wrapper">
-                    <img src="{{ asset('assets/images/logo.svg') }}" alt="edica logo">
+                <a href="{{ route('main.index') }}" class="footer-brand-wrapper">
+                    <img src="{{ asset('assets/images/logo_world.png') }}" alt="logo">
                 </a>
-                <p class="contact-details">hello@edica.com</p>
-                <p class="contact-details">+23 3000 000 00</p>
+                <p class="contact-details">couworld@gmail.com</p>
                 <nav class="footer-social-links">
-                    <a href="#!"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#!"><i class="fab fa-twitter"></i></a>
-                    <a href="#!"><i class="fab fa-behance"></i></a>
-                    <a href="#!"><i class="fab fa-dribbble"></i></a>
+                    <h6>Для связи с автором:</h6>
+                    <a href="https://t.me/sedustan"><i class="fab fa-telegram-plane"></i></a>
+                    <a href="https://vk.com/sedusova96"><i class="fab fa-vk"></i></a>
+                    <a href="https://web.whatsapp.com/"><i class="fab fa-whatsapp"></i></a>
                 </nav>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 d-flex align-items-center mx-3">
                 <nav class="footer-nav">
-                    <a href="#!" class="nav-link">Company</a>
-                    <a href="#!" class="nav-link">Android App</a>
-                    <a href="#!" class="nav-link">ios App</a>
-                    <a href="#!" class="nav-link">Blog</a>
-                    <a href="#!" class="nav-link">Partners</a>
-                    <a href="#!" class="nav-link">Careers</a>
+                    <a href="{{ route('main.index') }}" class="nav-link">Блог</a>
+                    <a href="{{ route('category.index') }}" class="nav-link">Категории</a>
                 </nav>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 d-flex align-items-center">
                 <nav class="footer-nav">
-                    <a href="#!" class="nav-link">FAQ</a>
-                    <a href="#!" class="nav-link">Reporting</a>
-                    <a href="#!" class="nav-link">Block Storage</a>
-                    <a href="#!" class="nav-link">Tools & Integrations</a>
-                    <a href="#!" class="nav-link">API</a>
-                    <a href="#!" class="nav-link">Pricing</a>
+                    <a href="{{ route('about.index') }}" class="nav-link">Об авторе</a>
+                    <a href="{{ route('contact.index') }}" class="nav-link">Контакты</a>
                 </nav>
             </div>
-            <div class="col-md-3">
-                <div class="dropdown footer-country-dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="footerCountryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="flag-icon flag-icon-gb flag-icon-squared"></span> United Kingdom <i class="fas fa-chevron-down ml-2"></i>
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="footerCountryDropdown">
-                        <button class="dropdown-item" href="#">
-                            <span class="flag-icon flag-icon-us flag-icon-squared"></span> United States
-                        </button>
-                        <button class="dropdown-item" href="#">
-                            <span class="flag-icon flag-icon-au flag-icon-squared"></span> Australia
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom-content">
-            <nav class="nav footer-bottom-nav">
-                <a href="#!">Privacy & Policy</a>
-                <a href="#!">Terms</a>
-                <a href="#!">Site Map</a>
-            </nav>
-            <p class="mb-0">© Edica. 2020 <a href="https://www.bootstrapdash.com" target="_blank" rel="noopener noreferrer" class="text-reset">bootstrapdash</a> . All rights reserved.</p>
         </div>
     </div>
 </footer>
