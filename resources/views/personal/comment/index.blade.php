@@ -1,4 +1,4 @@
-@extends('personal.layouts.main')
+@extends('personal.layouts.main', ['title' => 'Комментарии'])
 
 @section('content')
     <div class="content-wrapper">

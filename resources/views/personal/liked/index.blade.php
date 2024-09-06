@@ -1,4 +1,4 @@
-@extends('personal.layouts.main')
+@extends('personal.layouts.main', ['title' => 'Мне нравится'])
 
 @section('content')
     <div class="content-wrapper">

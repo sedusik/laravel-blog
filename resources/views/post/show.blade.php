@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main', ['title' => $post->title])
 
 @section('content')
     <main class="blog-post" style="margin-top: -100px;">
