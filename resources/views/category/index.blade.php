@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main', ['title' => 'Категории'])
 
 @section('content')
     <main class="blog">

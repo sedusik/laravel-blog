@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('admin.layouts.main', ['title' => $post->title])
 
 @section('content')
     <div class="content-wrapper">
