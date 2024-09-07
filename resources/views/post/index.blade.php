@@ -2,7 +2,7 @@
 
 @section('content')
 
-<main class="blog" style="margin-top: -100px;">
+<main class="blog">
     <div class="container">
         <h1 class="edica-page-title" data-aos="fade-up">Блог о путешествиях</h1>
         <section class="featured-posts-section">
