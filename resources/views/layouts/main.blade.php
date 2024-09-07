@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="edica-loader"></div>
-<header class="edica-header">
+<header class="edica-header" style="margin-bottom: -100px;">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" href="{{ route('post.index') }}"><img src="{{ asset('assets/images/logo_world.png') }}" alt="logo"></a>
@@ -39,7 +39,7 @@
                             <a class="nav-link" href="{{ route('personal.main.index') }}"><h5>Личный кабинет</h5></a>
                         @endauth
                         @guest()
-                            <a class="nav-link" href="{{ route('personal.main.index') }}">Войти<h5></h5></a>
+                            <a class="nav-link" href="{{ route('personal.main.index') }}"><h5>Войти</h5></a>
                         @endguest
                     </li>
                 </ul>
