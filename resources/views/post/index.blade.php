@@ -20,7 +20,7 @@
                                 <span>{{ $post->liked_users_count }}</span>
                                 <button type="submit" class="border-0 bg-transparent">
                                     @if(auth()->user()->likedPosts->contains($post->id))
-                                        <i class="fas fa-heart"></i>
+                                        <i class="fas fa-heart" style="color: #f64343;"></i>
                                     @else
                                         <i class="far fa-heart"></i>
                                     @endif
